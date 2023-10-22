@@ -69,7 +69,7 @@ const App = () => {
         </Button>
         {isRunning && (
           <>
-            <Button handler={handleClick} disabled={!isRunning} type="danger">
+            <Button handler={handleClick} disabled={!isRunning} type="warning">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -100,7 +100,7 @@ const App = () => {
           </>
         )}
         {!isRunning && time > 0 && (
-          <Button handler={handleClear} type="warning" disabled={false}>
+          <Button handler={handleClear} type="danger" disabled={false}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
