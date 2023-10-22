@@ -150,7 +150,7 @@ const App = () => {
               <FormatTime time={lap} />
             </div>
             <div className=" text-green-500 ml-4">
-              {index !== laps.length - 1 ? lap - laps[index + 1] : 0}
+              + {index !== laps.length - 1 ? lap - laps[index + 1] : 0}s
             </div>
           </div>
         ))}
