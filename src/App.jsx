@@ -53,7 +53,12 @@ const App = () => {
         <FormatTime time={time} />
       </div>
       <div className="text-slate-50 text-xl space-x-4">
-        <Button handler={handleClick} disabled={isRunning} type="success">
+        <Button
+          handler={handleClick}
+          disabled={isRunning}
+          type="success"
+          title="Start"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -69,7 +74,12 @@ const App = () => {
         </Button>
         {isRunning && (
           <>
-            <Button handler={handleClick} disabled={!isRunning} type="warning">
+            <Button
+              handler={handleClick}
+              disabled={!isRunning}
+              type="warning"
+              title="Pause"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -78,12 +88,17 @@ const App = () => {
               >
                 <path
                   fillRule="evenodd"
-                  d="M4.5 7.5a3 3 0 013-3h9a3 3 0 013 3v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9z"
+                  d="M6.75 5.25a.75.75 0 01.75-.75H9a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H7.5a.75.75 0 01-.75-.75V5.25zm7.5 0A.75.75 0 0115 4.5h1.5a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H15a.75.75 0 01-.75-.75V5.25z"
                   clipRule="evenodd"
                 />
               </svg>
             </Button>
-            <Button handler={handleLap} disabled={!isRunning} type="primary">
+            <Button
+              handler={handleLap}
+              disabled={!isRunning}
+              type="primary"
+              title="Lap"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -100,7 +115,7 @@ const App = () => {
           </>
         )}
         {!isRunning && time > 0 && (
-          <Button handler={handleClear} type="danger" disabled={false}>
+          <Button handler={handleClear} type="danger" title="Stop">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -109,7 +124,7 @@ const App = () => {
             >
               <path
                 fillRule="evenodd"
-                d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z"
+                d="M4.5 7.5a3 3 0 013-3h9a3 3 0 013 3v9a3 3 0 01-3 3h-9a3 3 0 01-3-3v-9z"
                 clipRule="evenodd"
               />
             </svg>
