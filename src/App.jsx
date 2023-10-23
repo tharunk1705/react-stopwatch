@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Button from "./components/Button";
 import FormatTime from "./components/FormatTime";
+import ScrollableDiv from "./components/ScrollableDiv";
 
 const App = () => {
   const [time, setTime] = useState(0);
@@ -22,14 +23,14 @@ const App = () => {
   };
   const handleLap = () => {
     if (laps.indexOf(time) === -1) {
-      if (laps.length > 0) {
-        let newLaps = laps;
-        newLaps.unshift(time);
-        console.log(newLaps);
-        setLaps(newLaps);
-      } else {
-        setLaps((laps) => [...laps, time]);
-      }
+      // if (laps.length > 0) {
+      //   let newLaps = laps;
+      //   newLaps.unshift(time);
+      //   console.log(newLaps);
+      //   setLaps(newLaps);
+      // } else {
+      setLaps((laps) => [...laps, time]);
+      // }
     }
   };
 
@@ -49,7 +50,10 @@ const App = () => {
 
   return (
     <div className="bg-slate-950 h-screen w-screen flex flex-col justify-center items-center gap-8 font-gabarito p-8 overflow-hidden">
-      <div className="text-slate-50 text-5xl md:text-7xl" ref={timeRef}>
+      <div
+        className="text-slate-50 text-5xl md:text-7xl transition-all"
+        ref={timeRef}
+      >
         <FormatTime time={time} />
       </div>
       <div className="text-slate-50 text-xl space-x-4">
@@ -97,7 +101,7 @@ const App = () => {
               handler={handleLap}
               disabled={!isRunning}
               type="primary"
-              title="Lap"
+              title="Split"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -131,30 +135,24 @@ const App = () => {
           </Button>
         )}
       </div>
-      <div className="text-slate-50 text-lg md:text-xl flex flex-col h-1/2 md:h-1/4 gap-3 overflow-y-auto p-4">
-        {laps.map((lap, index) => (
-          <div key={lap + "" + index} className="inline-flex gap-4 ">
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-6 h-6 inline-block"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <FormatTime time={lap} />
-            </div>
-            <div className=" text-green-500 ml-4">
-              + {index !== laps.length - 1 ? lap - laps[index + 1] : 0}s
-            </div>
-          </div>
-        ))}
-      </div>
+      {laps.length > 0 && (
+        <div className="text-slate-50 text-lg md:text-xl h-1/2 md:h-1/4 px-4 space-y-2">
+          <span className="underline">Split</span>
+          <ScrollableDiv>
+            {laps.map((lap, index) => (
+              <div key={lap + "" + index} className="inline-flex gap-4 ">
+                <div className="flex gap-2">
+                  <span className="text-gray-500">#{index + 1}</span>
+                  <FormatTime time={lap} />
+                </div>
+                <div className=" text-green-500 ml-4">
+                  + {index !== 0 ? lap - laps[index - 1] : 0}s
+                </div>
+              </div>
+            ))}
+          </ScrollableDiv>
+        </div>
+      )}
     </div>
   );
 };

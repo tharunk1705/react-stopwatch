@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { memo } from "react";
 const Button = ({
   handler = () => {},
   disabled = false,
@@ -24,4 +25,4 @@ const Button = ({
   );
 };
 
-export default Button;
+export default memo(Button);
